@@ -1,4 +1,4 @@
 package com.dropfood.dropfood.dto;
 
-public class PedidoDto {
+public record PedidoDto {
 }
