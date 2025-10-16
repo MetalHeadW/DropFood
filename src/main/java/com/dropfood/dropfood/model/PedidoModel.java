@@ -18,6 +18,8 @@ public class PedidoModel {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name = "IDPEDIDO")
 private int idPedido;
-@Column (name = "")
+@Column (name = "QTPEDIDO")
 private Date qtPedido;
+@Column (name = "")
+private;
 
