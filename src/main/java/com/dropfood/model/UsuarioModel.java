@@ -10,10 +10,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "TBUSUARIO")
 
 public class UsuarioModel {
-    @Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "CDUSUARIO")
-private int cdCliente;
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IDUSUARIO")
