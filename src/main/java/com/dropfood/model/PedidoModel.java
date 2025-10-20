@@ -1,4 +1,4 @@
-package com.dropfood.dropfood.model;
+package com.dropfood.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -18,6 +18,8 @@ public class PedidoModel {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name = "IDPEDIDO")
 private int idPedido;
-@Column (name = "")
+@Column (name = "QTPEDIDO")
 private Date qtPedido;
+@Column (name = "")
+private;
 

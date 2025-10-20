@@ -1,4 +1,4 @@
 package com.dropfood.dropfood.repository;
 
-public interface ItemPedidorRepository {
+public class ItemPedidorRepository {
 }
