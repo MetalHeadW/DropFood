@@ -1,5 +1,5 @@
 package com.dropfood.dto;
 
 
-public class ItemPedidoDto {
+public record ItemPedidoDto {
 }
