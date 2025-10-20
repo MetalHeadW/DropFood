@@ -9,17 +9,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "TBPRODUTO")
 
-public class ProdutoModel { @Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "CDCLIENTE")
-private int cdCliente;
-    @Column(name = "NMCLIENTE")
-    private String nmCliente;
-    @Column(name = "DSCLIENTE")
-    private String dsCliente;
-    @Column(name = "VLSALARIOCLIENTE")
-    private Double vlSalarioCliente;
-    @Column(name = "FLNUMEROCLIENTE")
-    private String flNumeroCliente;
-}
+public class ProdutoModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IDPRODUTO")
+    private Integer id_produto;
+
+    @Column(name = "NMPRODUTO", length = 100, nullable = false)
+    private String nm_produto;
+
+    @Column(name = "DSPRODUTO", length = 1000)
+    private String ds_produto;
+
+    @Column(name = "PRECO", nullable = false)
+    private Double preco;
+
+    @Column(name = "CATEGORIA", nullable = false)
+    private String categoria;
+
+    @Column(name = "FLGATIVO", nullable = false)
+    private String flg_ativo;
 }
