@@ -67,10 +67,9 @@ public class PedidoModel {
         this.vl_Total = vl_Total;
     }
 
-    public Integer getId_Usuario(){
-        this.id_Usuario = id_Usuario;
-
-    }
+public Integer getId_Usuario(){
+        return id_Usuario;
+}
     public void setId_Usuario(Integer id_Usuario){
         this.id_Usuario = id_Usuario;
     }
