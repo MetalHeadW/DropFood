@@ -1,4 +1,21 @@
 package com.dropfood.repository;
 
-public interface UsuarioRepository {
+import com.dropfood.model.UsuarioModel;
+import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface UsuarioRepository extends JpaRepository<UsuarioModel, Integer> {
+
+    Optional<UsuarioModel> findByIdUsuario(Integer idUsuario);
+
+    @Query("SELECT usuar FROM UsuarioModel usuar WHERE usuar.flg_Ativo = 'A'")
+    List<UsuarioModel> findByFlgAtivo();
+
+    @Transactional
+    Optional<UsuarioModel> deleteByIdUsuario(Integer id_Usuario);
+
 }

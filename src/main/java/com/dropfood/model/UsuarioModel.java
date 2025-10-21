@@ -1,8 +1,12 @@
 package com.dropfood.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -41,4 +45,12 @@ public class UsuarioModel {
 
     @Column(name = "PEFERENCIA2", length=30)
     private String peferencia2;
+
+    @Column(name = "FLGATIVO", length=30)
+    private String flg_Ativo;
+
+    @OneToMany(mappedBy = "IDEMPRESA", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonIgnore
+    private List<EmpresaModel> id_Empresa;
 }

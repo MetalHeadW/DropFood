@@ -30,4 +30,7 @@ public class ProdutoModel {
 
     @Column(name = "FLGATIVO", nullable = false)
     private String flg_ativo;
+
+    @Column(name = "IDEMPRESA")
+    private Integer id_empresa;
 }

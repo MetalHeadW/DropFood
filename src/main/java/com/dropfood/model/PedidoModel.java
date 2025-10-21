@@ -15,24 +15,32 @@ import java.util.Date;
 @Table(name = "TBPEDIDO")
 
 public class PedidoModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IDPEDIDO")
     private int id_Pedido;
-    @Column(name = "DATA_HORA", length = 50)
+
+    @Column(name = "DATAHORA", length = 50)
     private LocalDateTime data_Hora;
+
     @Column (name="STSPEDIDO", length = 50)
     private String sts_Pedido;
+
     @Column(name = "VLTOTAL")
     private Double vl_Total;
+
     @Column (name = "IDUSUARIO")
     private Integer id_Usuario;
+
     @Column(name = "IDEMPRESA")
     private Integer id_Empresa;
+
     @Column (name = "TPPAGAMENTO")
     private String tp_Pagamento;
+
     @Column (name = "STSPAGAMENTO")
     private String sts_Pagamento;
+
     @Column (name = "DTPAGAMENTO")
     private LocalDate dt_Pagamento;
 
