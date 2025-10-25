@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Builder;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 
@@ -45,6 +46,7 @@ public record UsuarioDto(
         @NotBlank(message= "Campo 'Endereço' não pode ser em Branco")
         @NotNull(message= "Campo 'Endereço' não pode ser Nulo")
         @Pattern(regexp = "^A|I$", message = "Só é possível salvar o flg_ativo com um dos caracteres A-Ativo. I-Inativo.")
+        @Value("A")
         String flg_Ativo,
 
         String peferencia1,
