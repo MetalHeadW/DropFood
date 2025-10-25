@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<UsuarioModel, Integer> {
 
-    Optional<UsuarioModel> findByIdUsuario(Integer idUsuario);
+    Optional<UsuarioModel> findByIdUsuario(Integer id_Usuario);
 
     @Query("SELECT usuar FROM UsuarioModel usuar WHERE usuar.flg_Ativo = 'A'")
     List<UsuarioModel> findByFlgAtivo();
