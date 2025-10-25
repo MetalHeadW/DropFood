@@ -40,17 +40,15 @@ public class UsuarioModel {
     @Column(name = "ENDERECO", length=200)
     private String endereco;
 
-    @Column(name = "PEFERENCIA1", length=30)
-    private String peferencia1;
+    @Column(name = "PREFERENCIA1", length=30)
+    private String preferencia1;
 
-    @Column(name = "PEFERENCIA2", length=30)
-    private String peferencia2;
+    @Column(name = "PREFERENCIA2", length=30)
+    private String preferencia2;
 
     @Column(name = "FLGATIVO", length=30)
     private String flg_Ativo;
 
-    @OneToMany(mappedBy = "IDEMPRESA", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, orphanRemoval = true)
-    @JsonIgnore
-    private List<EmpresaModel> id_Empresa;
+    @ManyToOne @JoinColumn(name = "IDEMPRESA", nullable = false)
+    private EmpresaModel empresa;
 }

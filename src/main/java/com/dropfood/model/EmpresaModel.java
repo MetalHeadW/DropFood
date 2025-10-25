@@ -1,9 +1,13 @@
 package com.dropfood.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -13,8 +17,8 @@ import lombok.NoArgsConstructor;
 
 
 public class EmpresaModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IDEMPRESA")
     private Integer id_Empresa;
 
@@ -32,4 +36,10 @@ public class EmpresaModel {
 
     @Column (name ="TPEMPRESA")
     private String tipo_Empresa;
+
+    @OneToMany (mappedBy = "empresa", cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY, orphanRemoval = true)
+
+    @JsonIgnore
+    private List<UsuarioModel> usuarios;
 }
