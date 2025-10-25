@@ -3,6 +3,7 @@ package com.dropfood.service;
 import com.dropfood.dto.UsuarioDto;
 import com.dropfood.model.UsuarioModel;
 import com.dropfood.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Service
 public class UsuarioService {
 
+    @Autowired
     private final UsuarioRepository usuarioRepository;
 
     public UsuarioService(UsuarioRepository usuarioRepository) {
@@ -28,10 +30,10 @@ public class UsuarioService {
         usuario.setTip_Usuario(dto.tip_Usuario());
         usuario.setCpf(dto.cpf());
         usuario.setEndereco(dto.endereco());
-        usuario.setPeferencia1(dto.peferencia1());
-        usuario.setPeferencia2(dto.peferencia2());
+        usuario.setPreferencia1(dto.peferencia1());
+        usuario.setPreferencia2(dto.peferencia2());
         usuario.setFlg_Ativo(dto.flg_Ativo());
-        usuario.setId_Empresa(dto.id_Empresa());
+        usuario.setEmpresa(dto.empresa());
         return usuarioRepository.save(usuario);
     }
 
@@ -56,8 +58,8 @@ public class UsuarioService {
             usuario.setTip_Usuario(usuarioDto.tip_Usuario());
             usuario.setCpf(usuarioDto.cpf());
             usuario.setEndereco(usuarioDto.endereco());
-            usuario.setPeferencia1(usuarioDto.peferencia1());
-            usuario.setPeferencia2(usuarioDto.peferencia2());
+            usuario.setPreferencia1(usuarioDto.peferencia1());
+            usuario.setPreferencia2(usuarioDto.peferencia2());
             usuario.setFlg_Ativo(usuarioDto.flg_Ativo());
             return usuarioRepository.save(usuario);
         });

@@ -51,6 +51,6 @@ public record UsuarioDto(
 
         String peferencia1,
         String peferencia2,
-        Integer id_Empresa
+        Integer empresa
 ) {
 }
