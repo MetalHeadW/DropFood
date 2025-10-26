@@ -1,13 +1,18 @@
 package com.dropfood.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id_item")
 @Entity
 @Table (name = "TBITEMPEDIDO")
 public class ItemPedidoModel {
@@ -16,15 +21,21 @@ public class ItemPedidoModel {
     @Column(name ="IDITEM")
     private Integer id_item;
 
-    @Column(name="QUANTIDADE")
+    @ManyToOne
+    @JoinColumn(name="IDPEDIDO", nullable = false)
+    @JsonIgnore
+    private PedidoModel pedido;
+
+    @ManyToOne
+    @JoinColumn(name="IDPRODUTO", nullable = false)
+    private ProdutoModel produto;
+
+    @Column(name="QUANTIDADE", nullable = false)
     private Integer quantidade;
 
-    @Column(name="VALORUNITARIO")
-    private Double valor_unitario;
+    @Column(name="VALORUNITARIO", nullable = false)
+    private Double valor_unitario; // Preço do produto no momento da compra
 
-    @Column(name="IDPEDIDO")
-    private Integer id_pedido;
-
-    @Column(name="IDPRODUTO")
-    private Integer id_produto;
+    @Column(name="VALORTOTAL", nullable = false)
+    private Double valor_total; // (Quantidade * Valor Unitário)
 }
