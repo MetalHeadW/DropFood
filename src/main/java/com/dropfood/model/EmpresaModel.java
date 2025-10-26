@@ -2,21 +2,21 @@ package com.dropfood.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of = "id_Empresa")
 @Table(name = "TBEMPRESA")
-
-
-
 public class EmpresaModel {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,18 +32,14 @@ public class EmpresaModel {
     @Column(name = "TELEFONEEMPRESA", length = 20,  nullable = false)
     private String telefone_Empresa;
 
-    @Column(name = "CNPJ", length = 18,  nullable = false)
+    @Column(name = "CNPJ", length = 18,  nullable = false, unique = true)
     private String cnpj_Empresa;
 
-    @Column (name ="TPEMPRESA")
+    @Column (name ="TPEMPRESA", length = 50)
     private String tipo_Empresa;
 
     @OneToMany (mappedBy = "empresa", cascade = CascadeType.ALL,
-    fetch = FetchType.LAZY, orphanRemoval = true)
-
+            fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
     private List<UsuarioModel> usuarios;
-
-    public @NotNull(message = "ID da Empresa não pode ser nulo") Integer getIdEmpresa() {
-    }
 }
