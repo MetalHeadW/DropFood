@@ -58,7 +58,7 @@ public class UsuarioService {
         return usuarioRepository.findByIdUsuario(id_Usuario).map(usuario -> {
             usuario.setNm_Usuario(usuarioDto.nm_Usuario());
             usuario.setEmail(usuarioDto.email());
-            usuario.setSenha_Usuario(usuarioDto.senha_Usuario()); /
+            usuario.setSenha_Usuario(usuarioDto.senha_Usuario());
             usuario.setTelefone(usuarioDto.telefone());
             usuario.setTip_Usuario(usuarioDto.tip_Usuario());
             usuario.setCpf(usuarioDto.cpf());
@@ -67,7 +67,7 @@ public class UsuarioService {
             usuario.setPreferencia2(usuarioDto.preferencia2());
             usuario.setFlg_Ativo(usuarioDto.flg_Ativo());
 
-            if (usuarioDto.empresa() != null && !usuarioDto.empresa().equals(usuario.getEmpresa().getIdEmpresa())) {
+            if (usuarioDto.empresa() != null && !usuarioDto.empresa().equals(usuario.getEmpresa().getId_Empresa())) {
                 EmpresaModel novaEmpresa = empresaRepository.findById(usuarioDto.empresa())
                         .orElseThrow(() -> new EntityNotFoundException("Empresa com ID " + usuarioDto.empresa() + " não encontrada."));
                 usuario.setEmpresa(novaEmpresa);
