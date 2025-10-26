@@ -2,7 +2,7 @@ package com.dropfood.dto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class PedidoDto {
+public record PedidoDto {
     private Integer idPedido;
     private LocalDateTime dataPedido;
 
