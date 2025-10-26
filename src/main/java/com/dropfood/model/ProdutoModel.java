@@ -1,14 +1,19 @@
 package com.dropfood.model;
+
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of = "id_produto")
 @Table(name = "TBPRODUTO")
-
 public class ProdutoModel {
 
     @Id
@@ -25,12 +30,13 @@ public class ProdutoModel {
     @Column(name = "PRECO", nullable = false)
     private Double preco;
 
-    @Column(name = "CATEGORIA", nullable = false)
+    @Column(name = "CATEGORIA", length = 50, nullable = false)
     private String categoria;
 
-    @Column(name = "FLGATIVO", nullable = false)
+    @Column(name = "FLGATIVO", length = 1, nullable = false)
     private String flg_ativo;
 
-    @Column(name = "IDEMPRESA")
-    private Integer id_empresa;
+    @ManyToOne
+    @JoinColumn(name = "IDEMPRESA", nullable = false)
+    private EmpresaModel empresa;
 }
