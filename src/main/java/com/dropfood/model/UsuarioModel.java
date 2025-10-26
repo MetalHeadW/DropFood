@@ -1,15 +1,19 @@
 package com.dropfood.model;
+
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id_Usuario") // E @EqualsAndHashCode focado apenas no ID.
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "TBUSUARIO")
-
 public class UsuarioModel {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +23,10 @@ public class UsuarioModel {
     @Column(name = "NMUSUARIO", length=100, nullable = false)
     private String nm_Usuario;
 
-    @Column(name = "EMAIL",  length=100)
+    @Column(name = "EMAIL", length=100, unique = true)
     private String email;
 
-    @Column(name = "SENHAUSUARIO", length=50, nullable = false)
+    @Column(name = "SENHAUSUARIO", nullable = false)
     private String senha_Usuario;
 
     @Column(name = "TELEFONE", length =20)
@@ -31,7 +35,7 @@ public class UsuarioModel {
     @Column(name = "TIPUSUARIO", length =1, nullable = false)
     private Integer tip_Usuario; // 1-Administrador. 2-Funcionario 3-Entregador. 4-Cliente.
 
-    @Column(name = "CPF", length =20, nullable = false)
+    @Column(name = "CPF", length =20, nullable = false, unique = true)
     private String cpf;
 
     @Column(name = "ENDERECO", length=200)
@@ -43,9 +47,10 @@ public class UsuarioModel {
     @Column(name = "PREFERENCIA2", length=30)
     private String preferencia2;
 
-    @Column(name = "FLGATIVO", length=30)
+    @Column(name = "FLGATIVO", length=1)
     private String flg_Ativo;
 
-    @ManyToOne @JoinColumn(name = "IDEMPRESA", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "IDEMPRESA", nullable = false)
     private EmpresaModel empresa;
 }

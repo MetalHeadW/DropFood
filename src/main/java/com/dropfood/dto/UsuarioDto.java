@@ -1,16 +1,10 @@
 package com.dropfood.dto;
 
-
-import com.dropfood.model.EmpresaModel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.Builder;
-import org.springframework.beans.factory.annotation.Value;
-
-import java.util.List;
 
 public record UsuarioDto(
 
@@ -30,9 +24,9 @@ public record UsuarioDto(
         @NotNull(message= "Campo 'Telefone' não pode ser Nulo")
         String telefone,
 
-        @NotBlank(message= "Campo 'Tipo_Usuário' não pode ser em Branco")
         @NotNull(message= "Campo 'Tipo_Usuário' não pode ser Nulo")
-        @Pattern(regexp = "^1|2|3|4$", message = "Só é possível salvar o Tipo de Usuário com um dos números 1-Administrador. 2-Funcionario 3-Entregador. 4-Cliente.")
+        @Min(value = 1, message = "Tipo de Usuário deve ser no mínimo 1")
+        @Max(value = 4, message = "Tipo de Usuário deve ser no máximo 4")
         Integer tip_Usuario, // 1-Administrador. 2-Funcionario 3-Entregador. 4-Cliente.
 
         @NotBlank(message= "Campo 'CPF' não pode ser em Branco")
@@ -43,14 +37,15 @@ public record UsuarioDto(
         @NotNull(message= "Campo 'Endereço' não pode ser Nulo")
         String endereco,
 
-        @NotBlank(message= "Campo 'Endereço' não pode ser em Branco")
-        @NotNull(message= "Campo 'Endereço' não pode ser Nulo")
-        @Pattern(regexp = "^A|I$", message = "Só é possível salvar o flg_ativo com um dos caracteres A-Ativo. I-Inativo.")
-        @Value("A")
+        @NotBlank(message= "Campo 'flg_Ativo' não pode ser em Branco")
+        @NotNull(message= "Campo 'flg_Ativo' não pode ser Nulo")
+        @Pattern(regexp = "^A|I$", message = "Só é possível salvar o flg_ativo com A-Ativo ou I-Inativo.")
         String flg_Ativo,
 
-        String peferencia1,
-        String peferencia2,
-        Integer empresa
+        String preferencia1,
+        String preferencia2,
+
+        @NotNull(message = "ID da Empresa não pode ser nulo")
+        Integer empresa // Recebe o ID da Empresa
 ) {
 }

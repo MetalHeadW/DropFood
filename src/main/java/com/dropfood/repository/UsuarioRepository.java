@@ -16,6 +16,6 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, Integer> 
     List<UsuarioModel> findByFlgAtivo();
 
     @Transactional
-    Optional<UsuarioModel> deleteByIdUsuario(Integer id_Usuario);
+    long deleteByIdUsuario(Integer id_Usuario);
 
 }

@@ -1,10 +1,10 @@
 package com.dropfood.controller;
+
 import com.dropfood.dto.UsuarioDto;
 import com.dropfood.model.UsuarioModel;
 import com.dropfood.service.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +16,11 @@ import java.util.List;
 @CrossOrigin("*")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
+
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
 
     @PostMapping
     public ResponseEntity<UsuarioModel> criar (@Valid @RequestBody UsuarioDto dto) {
@@ -46,6 +49,4 @@ public class UsuarioController {
                                                       @Valid @RequestBody UsuarioDto dto) {
         return usuarioService.atualizaDados(id_Usuario, dto).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
-
-
 }

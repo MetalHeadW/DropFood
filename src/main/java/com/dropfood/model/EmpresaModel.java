@@ -2,6 +2,7 @@ package com.dropfood.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -42,4 +43,7 @@ public class EmpresaModel {
 
     @JsonIgnore
     private List<UsuarioModel> usuarios;
+
+    public @NotNull(message = "ID da Empresa não pode ser nulo") Integer getIdEmpresa() {
+    }
 }
