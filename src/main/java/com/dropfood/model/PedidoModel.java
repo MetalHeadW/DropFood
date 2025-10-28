@@ -6,8 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -22,27 +22,30 @@ public class PedidoModel {
     @Column(name = "IDPEDIDO")
     private Integer idPedido;
 
-    @Column(name = "DATAHORA")
-    private LocalDateTime dataHora;
+    @Column(name = "HORA")
+    private LocalTime hora;
 
-    @Column (name="STSPEDIDO", length = 50, nullable = false)
+    @Column(name = "DATA")
+    private LocalDate data;
+
+    @Column (name="STSPEDIDO")
     private String stsPedido;
 
-    @Column(name = "VLRTOTAL", nullable = false)
+    @Column(name = "VLRTOTAL")
     private Double vlrTotal;
 
     @ManyToOne
-    @JoinColumn(name = "IDUSUARIO", nullable = false)
+    @JoinColumn(name = "IDUSUARIO")
     private UsuarioModel usuario;
 
     @ManyToOne
-    @JoinColumn(name = "IDEMPRESA", nullable = false)
+    @JoinColumn(name = "IDEMPRESA")
     private EmpresaModel empresa;
 
-    @Column (name = "TPPAGAMENTO", length = 50)
+    @Column (name = "TPPAGAMENTO")
     private String tpPagamento;  // Dinheiro, cartão de crédito, debito, etc......
 
-    @Column (name = "STSPAGAMENTO", length = 50)
+    @Column (name = "STSPAGAMENTO")
     private String stsPagamento; // A receber, conluído.......
 
     @Column (name = "DTPAGAMENTO")

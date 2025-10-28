@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +51,8 @@ public class PedidoService {
         pedido.setEmpresa(empresa);
         pedido.setTpPagamento(dto.tpPagamento());
         pedido.setVlrTotal(0.0);
-        pedido.setDataHora(LocalDateTime.now());
+        pedido.setData(LocalDate.now());
+        pedido.setHora(LocalTime.now());
         pedido.setStsPedido("PENDENTE");
         pedido.setStsPagamento("A RECEBER");
         pedido.setDtPagamento(null);
