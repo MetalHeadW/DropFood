@@ -12,14 +12,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(of = "id_item")
+@EqualsAndHashCode(of = "idItem")
 @Entity
 @Table (name = "TBITEMPEDIDO")
 public class ItemPedidoModel {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="IDITEM")
-    private Integer id_item;
+    private Integer idItem;
 
     @ManyToOne
     @JoinColumn(name="IDPEDIDO", nullable = false)
@@ -34,8 +34,8 @@ public class ItemPedidoModel {
     private Integer quantidade;
 
     @Column(name="VALORUNITARIO", nullable = false)
-    private Double valor_unitario; // Preço do produto no momento da compra
+    private Double valorUnitario; // Preço do produto no momento da compra
 
     @Column(name="VALORTOTAL", nullable = false)
-    private Double valor_total; // (Quantidade * Valor Unitário)
+    private Double valorTotal; // (Quantidade * Valor Unitário)
 }

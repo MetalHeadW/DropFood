@@ -12,7 +12,7 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, Integer> 
 
     Optional<UsuarioModel> findByIdUsuario(Integer id_Usuario);
 
-    @Query("SELECT usuar FROM UsuarioModel usuar WHERE usuar.flg_Ativo = 'A'")
+    @Query("SELECT usuar FROM UsuarioModel usuar WHERE usuar.flgAtivo = 'A'")
     List<UsuarioModel> findByFlgAtivo();
 
     @Transactional

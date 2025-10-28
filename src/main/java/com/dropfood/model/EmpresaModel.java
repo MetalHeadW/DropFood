@@ -15,28 +15,28 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id_Empresa")
+@EqualsAndHashCode(of = "idEmpresa")
 @Table(name = "TBEMPRESA")
 public class EmpresaModel {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IDEMPRESA")
-    private Integer id_Empresa;
+    private Integer idEmpresa;
 
     @Column(name = "NMEMPRESA", length = 100,  nullable = false)
-    private String nm_Empresa;
+    private String nmEmpresa;
 
     @Column(name = "ENDERECO", length = 200,  nullable = false)
-    private String endereco_Empresa;
+    private String enderecoEmpresa;
 
     @Column(name = "TELEFONEEMPRESA", length = 20,  nullable = false)
-    private String telefone_Empresa;
+    private String telefoneEmpresa;
 
     @Column(name = "CNPJ", length = 18,  nullable = false, unique = true)
-    private String cnpj_Empresa;
+    private String cnpjEmpresa;
 
     @Column (name ="TPEMPRESA", length = 50)
-    private String tipo_Empresa;
+    private String tipoEmpresa;
 
     @OneToMany (mappedBy = "empresa", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, orphanRemoval = true)

@@ -35,25 +35,25 @@ public class PedidoService {
 
     @Transactional
     public PedidoModel salvar(PedidoDto dto) {
-        if (dto.id_Usuario() == null) throw new IllegalArgumentException("ID do Usuário não pode ser nulo.");
-        if (dto.id_Empresa() == null) throw new IllegalArgumentException("ID da Empresa não pode ser nulo.");
-        if (dto.tp_Pagamento() == null || dto.tp_Pagamento().isBlank()) {
+        if (dto.idUsuario() == null) throw new IllegalArgumentException("ID do Usuário não pode ser nulo.");
+        if (dto.idEmpresa() == null) throw new IllegalArgumentException("ID da Empresa não pode ser nulo.");
+        if (dto.tpPagamento() == null || dto.tpPagamento().isBlank()) {
             throw new IllegalArgumentException("Tipo de Pagamento não pode ser nulo ou em branco.");
         }
-        UsuarioModel usuario = usuarioRepository.findById(dto.id_Usuario())
-                .orElseThrow(() -> new EntityNotFoundException("Usuário com ID " + dto.id_Usuario() + " não encontrado."));
+        UsuarioModel usuario = usuarioRepository.findById(dto.idUsuario())
+                .orElseThrow(() -> new EntityNotFoundException("Usuário com ID " + dto.idUsuario() + " não encontrado."));
 
-        EmpresaModel empresa = empresaRepository.findById(dto.id_Empresa())
-                .orElseThrow(() -> new EntityNotFoundException("Empresa com ID " + dto.id_Empresa() + " não encontrada."));
+        EmpresaModel empresa = empresaRepository.findById(dto.idEmpresa())
+                .orElseThrow(() -> new EntityNotFoundException("Empresa com ID " + dto.idEmpresa() + " não encontrada."));
         PedidoModel pedido = new PedidoModel();
         pedido.setUsuario(usuario);
         pedido.setEmpresa(empresa);
-        pedido.setTp_Pagamento(dto.tp_Pagamento());
-        pedido.setVlr_Total(0.0);
-        pedido.setData_Hora(LocalDateTime.now());
-        pedido.setSts_Pedido("PENDENTE");
-        pedido.setSts_Pagamento("A RECEBER");
-        pedido.setDt_Pagamento(null);
+        pedido.setTpPagamento(dto.tpPagamento());
+        pedido.setVlrTotal(0.0);
+        pedido.setDataHora(LocalDateTime.now());
+        pedido.setStsPedido("PENDENTE");
+        pedido.setStsPagamento("A RECEBER");
+        pedido.setDtPagamento(null);
         return pedidoRepository.save(pedido);
     }
 
@@ -64,9 +64,9 @@ public class PedidoService {
 
         List<ItemPedidoModel> itens = itemPedidoRepository.findByPedido(pedido);
         Double novoTotal = itens.stream()
-                .mapToDouble(ItemPedidoModel::getValor_total)
+                .mapToDouble(ItemPedidoModel::getValorTotal)
                 .sum();
-        pedido.setVlr_Total(novoTotal);
+        pedido.setVlrTotal(novoTotal);
         pedidoRepository.save(pedido);
     }
 
@@ -86,18 +86,18 @@ public class PedidoService {
 
     @Transactional
     public Optional<PedidoModel> atualizaStatus(Integer id, PedidoDto dto) {
-        if (dto.sts_Pedido() == null || dto.sts_Pedido().isBlank()) {
+        if (dto.stsPedido() == null || dto.stsPedido().isBlank()) {
             throw new IllegalArgumentException("Status do Pedido não pode ser nulo ou em branco.");
         }
-        if (dto.sts_Pagamento() == null || dto.sts_Pagamento().isBlank()) {
+        if (dto.stsPagamento() == null || dto.stsPagamento().isBlank()) {
             throw new IllegalArgumentException("Status do Pagamento não pode ser nulo ou em branco.");
         }
         return pedidoRepository.findById(id).map(pedido -> {
-            pedido.setSts_Pedido(dto.sts_Pedido());
-            if (dto.sts_Pagamento().equals("CONCLUÍDO") && pedido.getSts_Pagamento().equals("A RECEBER")) {
-                pedido.setDt_Pagamento(LocalDate.now());
+            pedido.setStsPedido(dto.stsPedido());
+            if (dto.stsPagamento().equals("CONCLUÍDO") && pedido.getStsPagamento().equals("A RECEBER")) {
+                pedido.setDtPagamento(LocalDate.now());
             }
-            pedido.setSts_Pagamento(dto.sts_Pagamento());
+            pedido.setStsPagamento(dto.stsPagamento());
             return pedidoRepository.save(pedido);
         });
     }

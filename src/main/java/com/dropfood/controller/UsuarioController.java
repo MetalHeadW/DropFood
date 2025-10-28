@@ -38,15 +38,15 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.listarUsuariosAtivos());
     }
 
-    @GetMapping("/{id_Usuario}")
-    public ResponseEntity<UsuarioModel> listarPorIdUsuario (@PathVariable Integer id_Usuario) {
-        return usuarioService.findByIdUsuario(id_Usuario).map(ResponseEntity::ok)
+    @GetMapping("/{idUsuario}")
+    public ResponseEntity<UsuarioModel> listarPorIdUsuario (@PathVariable Integer idUsuario) {
+        return usuarioService.findByIdUsuario(idUsuario).map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/{id_Usuario}")
-    public ResponseEntity<UsuarioModel> atualizaDados(@PathVariable Integer id_Usuario,
+    @PutMapping("/{idUsuario}")
+    public ResponseEntity<UsuarioModel> atualizaDados(@PathVariable Integer idUsuario,
                                                       @Valid @RequestBody UsuarioDto dto) {
-        return usuarioService.atualizaDados(id_Usuario, dto).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return usuarioService.atualizaDados(idUsuario, dto).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 }

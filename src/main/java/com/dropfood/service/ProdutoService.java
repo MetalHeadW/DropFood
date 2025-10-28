@@ -23,15 +23,15 @@ public class ProdutoService {
     }
 
     public ProdutoModel salvar(ProdutoDto dto) {
-        EmpresaModel empresa = empresaRepository.findById(dto.id_empresa())
-                .orElseThrow(() -> new EntityNotFoundException("Empresa com ID " + dto.id_empresa() + " não encontrada."));
+        EmpresaModel empresa = empresaRepository.findById(dto.idEmpresa())
+                .orElseThrow(() -> new EntityNotFoundException("Empresa com ID " + dto.idEmpresa() + " não encontrada."));
 
         ProdutoModel produto = new ProdutoModel();
-        produto.setNm_produto(dto.nm_produto());
-        produto.setDs_produto(dto.ds_produto());
+        produto.setNmProduto(dto.nmProduto());
+        produto.setDsProduto(dto.dsProduto());
         produto.setPreco(dto.preco());
         produto.setCategoria(dto.categoria());
-        produto.setFlg_ativo(dto.flg_ativo());
+        produto.setFlgAtivo(dto.flgAtivo());
         produto.setEmpresa(empresa);
         return produtoRepository.save(produto);
     }
@@ -50,14 +50,14 @@ public class ProdutoService {
 
     public Optional<ProdutoModel> atualizaDados(Integer id, ProdutoDto dto) {
         return produtoRepository.findById(id).map(produto -> {
-            produto.setNm_produto(dto.nm_produto());
-            produto.setDs_produto(dto.ds_produto());
+            produto.setNmProduto(dto.nmProduto());
+            produto.setDsProduto(dto.dsProduto());
             produto.setPreco(dto.preco());
             produto.setCategoria(dto.categoria());
-            produto.setFlg_ativo(dto.flg_ativo());
-            if (!produto.getEmpresa().getId_Empresa().equals(dto.id_empresa())) {
-                EmpresaModel novaEmpresa = empresaRepository.findById(dto.id_empresa())
-                        .orElseThrow(() -> new EntityNotFoundException("Empresa com ID " + dto.id_empresa() + " não encontrada."));
+            produto.setFlgAtivo(dto.flgAtivo());
+            if (!produto.getEmpresa().getIdEmpresa().equals(dto.idEmpresa())) {
+                EmpresaModel novaEmpresa = empresaRepository.findById(dto.idEmpresa())
+                        .orElseThrow(() -> new EntityNotFoundException("Empresa com ID " + dto.idEmpresa() + " não encontrada."));
                 produto.setEmpresa(novaEmpresa);
             }
             return produtoRepository.save(produto);

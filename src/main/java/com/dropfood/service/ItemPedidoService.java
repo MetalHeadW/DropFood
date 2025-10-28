@@ -34,15 +34,15 @@ public class ItemPedidoService {
         PedidoModel pedido = pedidoRepository.findById(idPedido)
                 .orElseThrow(() -> new EntityNotFoundException("Pedido com ID " + idPedido + " não encontrado."));
 
-        ProdutoModel produto = produtoRepository.findById(dto.id_produto())
-                .orElseThrow(() -> new EntityNotFoundException("Produto com ID " + dto.id_produto() + " não encontrado."));
+        ProdutoModel produto = produtoRepository.findById(dto.idProduto())
+                .orElseThrow(() -> new EntityNotFoundException("Produto com ID " + dto.idProduto() + " não encontrado."));
 
         ItemPedidoModel item = new ItemPedidoModel();
         item.setPedido(pedido);
         item.setProduto(produto);
         item.setQuantidade(dto.quantidade());
-        item.setValor_unitario(produto.getPreco());
-        item.setValor_total(produto.getPreco() * dto.quantidade());
+        item.setValorUnitario(produto.getPreco());
+        item.setValorTotal(produto.getPreco() * dto.quantidade());
         ItemPedidoModel itemSalvo = itemPedidoRepository.save(item);
         pedidoService.recalcularTotalPedido(idPedido);
         return itemSalvo;
@@ -62,7 +62,7 @@ public class ItemPedidoService {
     public void deletar(Integer idItem) {
         ItemPedidoModel item = itemPedidoRepository.findById(idItem)
                 .orElseThrow(() -> new EntityNotFoundException("Item com ID " + idItem + " não encontrado."));
-        Integer idPedido = item.getPedido().getId_Pedido();
+        Integer idPedido = item.getPedido().getIdPedido();
         itemPedidoRepository.delete(item);
         pedidoService.recalcularTotalPedido(idPedido);
     }

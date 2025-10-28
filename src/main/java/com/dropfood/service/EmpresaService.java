@@ -3,7 +3,6 @@ package com.dropfood.service;
 import com.dropfood.dto.EmpresaDto;
 import com.dropfood.model.EmpresaModel;
 import com.dropfood.repository.EmpresaRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -18,16 +17,16 @@ public class EmpresaService {
     }
 
     public EmpresaModel salvar(EmpresaDto dto) {
-        if (empresaRepository.findByCnpjEmpresa(dto.cnpj_Empresa()).isPresent()) {
+        if (empresaRepository.findByCnpjEmpresa(dto.cnpjEmpresa()).isPresent()) {
             throw new IllegalArgumentException("Uma empresa com este CNPJ já existe.");
         }
 
         EmpresaModel empresa = new EmpresaModel();
-        empresa.setNm_Empresa(dto.nm_Empresa());
-        empresa.setEndereco_Empresa(dto.endereco_Empresa());
-        empresa.setTelefone_Empresa(dto.telefone_Empresa());
-        empresa.setCnpj_Empresa(dto.cnpj_Empresa());
-        empresa.setTipo_Empresa(dto.tipo_Empresa());
+        empresa.setNmEmpresa(dto.nmEmpresa());
+        empresa.setEnderecoEmpresa(dto.enderecoEmpresa());
+        empresa.setTelefoneEmpresa(dto.telefoneEmpresa());
+        empresa.setCnpjEmpresa(dto.cnpjEmpresa());
+        empresa.setTipoEmpresa(dto.tipoEmpresa());
 
         return empresaRepository.save(empresa);
     }
@@ -42,11 +41,11 @@ public class EmpresaService {
 
     public Optional<EmpresaModel> atualizaDados(Integer id, EmpresaDto dto) {
         return empresaRepository.findById(id).map(empresa -> {
-            empresa.setNm_Empresa(dto.nm_Empresa());
-            empresa.setEndereco_Empresa(dto.endereco_Empresa());
-            empresa.setTelefone_Empresa(dto.telefone_Empresa());
-            empresa.setCnpj_Empresa(dto.cnpj_Empresa());
-            empresa.setTipo_Empresa(dto.tipo_Empresa());
+            empresa.setNmEmpresa(dto.nmEmpresa());
+            empresa.setEnderecoEmpresa(dto.enderecoEmpresa());
+            empresa.setTelefoneEmpresa(dto.telefoneEmpresa());
+            empresa.setCnpjEmpresa(dto.cnpjEmpresa());
+            empresa.setTipoEmpresa(dto.tipoEmpresa());
             return empresaRepository.save(empresa);
         });
     }

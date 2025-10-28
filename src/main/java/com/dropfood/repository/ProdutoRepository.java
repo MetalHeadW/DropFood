@@ -22,6 +22,6 @@ public interface ProdutoRepository extends JpaRepository<ProdutoModel, Integer> 
     List<ProdutoModel> findByCategoriaAndEmpresa(String categoria, EmpresaModel empresa);
 
     // Query customizada para buscar produtos ativos pelo ID da empresa
-    @Query("SELECT p FROM ProdutoModel p WHERE p.empresa.id_Empresa = :idEmpresa AND p.flg_ativo = 'A'")
+    @Query("SELECT p FROM ProdutoModel p WHERE p.empresa.idEmpresa = :idEmpresa AND p.flgAtivo = 'A'")
     List<ProdutoModel> findAtivosByIdEmpresa(Integer idEmpresa);
 }

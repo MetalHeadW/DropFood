@@ -28,16 +28,16 @@ public class UsuarioService {
         EmpresaModel empresa = empresaRepository.findById(dto.empresa())
                 .orElseThrow(() -> new EntityNotFoundException("Empresa com ID " + dto.empresa() + " não encontrada."));
 
-        usuario.setNm_Usuario(dto.nm_Usuario());
+        usuario.setNmUsuario(dto.nmUsuario());
         usuario.setEmail(dto.email());
-        usuario.setSenha_Usuario(dto.senha_Usuario());
+        usuario.setSenhaUsuario(dto.senhaUsuario());
         usuario.setTelefone(dto.telefone());
-        usuario.setTip_Usuario(dto.tip_Usuario());
+        usuario.setTipUsuario(dto.tipUsuario());
         usuario.setCpf(dto.cpf());
         usuario.setEndereco(dto.endereco());
         usuario.setPreferencia1(dto.preferencia1());
         usuario.setPreferencia2(dto.preferencia2());
-        usuario.setFlg_Ativo(dto.flg_Ativo() != null ? dto.flg_Ativo() : "A");
+        usuario.setFlgAtivo(dto.flgAtivo() != null ? dto.flgAtivo() : "A");
         usuario.setEmpresa(empresa);
         return usuarioRepository.save(usuario);
     }
@@ -56,18 +56,18 @@ public class UsuarioService {
 
     public Optional<UsuarioModel> atualizaDados(Integer id_Usuario, UsuarioDto usuarioDto){
         return usuarioRepository.findByIdUsuario(id_Usuario).map(usuario -> {
-            usuario.setNm_Usuario(usuarioDto.nm_Usuario());
+            usuario.setNmUsuario(usuarioDto.nmUsuario());
             usuario.setEmail(usuarioDto.email());
-            usuario.setSenha_Usuario(usuarioDto.senha_Usuario());
+            usuario.setSenhaUsuario(usuarioDto.senhaUsuario());
             usuario.setTelefone(usuarioDto.telefone());
-            usuario.setTip_Usuario(usuarioDto.tip_Usuario());
+            usuario.setTipUsuario(usuarioDto.tipUsuario());
             usuario.setCpf(usuarioDto.cpf());
             usuario.setEndereco(usuarioDto.endereco());
             usuario.setPreferencia1(usuarioDto.preferencia1());
             usuario.setPreferencia2(usuarioDto.preferencia2());
-            usuario.setFlg_Ativo(usuarioDto.flg_Ativo());
+            usuario.setFlgAtivo(usuarioDto.flgAtivo());
 
-            if (usuarioDto.empresa() != null && !usuarioDto.empresa().equals(usuario.getEmpresa().getId_Empresa())) {
+            if (usuarioDto.empresa() != null && !usuarioDto.empresa().equals(usuario.getEmpresa().getIdEmpresa())) {
                 EmpresaModel novaEmpresa = empresaRepository.findById(usuarioDto.empresa())
                         .orElseThrow(() -> new EntityNotFoundException("Empresa com ID " + usuarioDto.empresa() + " não encontrada."));
                 usuario.setEmpresa(novaEmpresa);
