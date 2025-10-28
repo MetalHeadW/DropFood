@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -96,7 +95,7 @@ public class PedidoService {
         }
         return pedidoRepository.findById(id).map(pedido -> {
             pedido.setStsPedido(dto.stsPedido());
-            if (dto.stsPagamento().equals("CONCLUÍDO") && pedido.getStsPagamento().equals("A RECEBER")) {
+            if (dto.stsPagamento().equals("CONCLUIDO") && pedido.getStsPagamento().equals("RECEBIDO")) {
                 pedido.setDtPagamento(LocalDate.now());
             }
             pedido.setStsPagamento(dto.stsPagamento());

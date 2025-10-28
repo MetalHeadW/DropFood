@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/pedido")
 @CrossOrigin("*")
-public class PedidoController {
+public class    PedidoController {
 
     private final PedidoService pedidoService;
 
