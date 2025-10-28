@@ -9,10 +9,10 @@ import jakarta.validation.constraints.Size;
 public record ProdutoDto(
         @NotBlank(message = "Nome do produto não pode ser em branco")
         @Size(max = 100)
-        String nm_produto,
+        String nmProduto,
 
         @Size(max = 1000)
-        String ds_produto,
+        String dsProduto,
 
         @NotNull(message = "Preço não pode ser nulo")
         @DecimalMin(value = "0.01", message = "Preço deve ser maior que R$ 0,00")
@@ -24,9 +24,9 @@ public record ProdutoDto(
 
         @NotBlank(message = "Flag Ativo não pode ser em branco")
         @Pattern(regexp = "^A|I$", message = "flg_ativo deve ser 'A' (Ativo) ou 'I' (Inativo)")
-        String flg_ativo,
+        String flgAtivo,
 
         @NotNull(message = "ID da Empresa não pode ser nulo")
-        Integer id_empresa
+        Integer idEmpresa
 ) {
 }

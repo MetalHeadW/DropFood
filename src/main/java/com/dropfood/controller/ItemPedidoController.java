@@ -48,7 +48,7 @@ public class ItemPedidoController {
                                                            @PathVariable Integer idItem) {
         return itemPedidoService.findById(idItem)
                 // Validação extra (opcional) para garantir que o item pertence ao pedido
-                .filter(item -> item.getPedido().getId_Pedido().equals(idPedido))
+                .filter(item -> item.getPedido().getIdPedido().equals(idPedido))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

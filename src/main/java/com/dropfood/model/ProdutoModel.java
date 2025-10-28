@@ -12,20 +12,20 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id_produto")
+@EqualsAndHashCode(of = "idProduto")
 @Table(name = "TBPRODUTO")
 public class ProdutoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IDPRODUTO")
-    private Integer id_produto;
+    private Integer idProduto;
 
     @Column(name = "NMPRODUTO", length = 100, nullable = false)
-    private String nm_produto;
+    private String nmProduto;
 
     @Column(name = "DSPRODUTO", length = 1000)
-    private String ds_produto;
+    private String dsProduto;
 
     @Column(name = "PRECO", nullable = false)
     private Double preco;
@@ -34,7 +34,7 @@ public class ProdutoModel {
     private String categoria;
 
     @Column(name = "FLGATIVO", length = 1, nullable = false)
-    private String flg_ativo;
+    private String flgAtivo;
 
     @ManyToOne
     @JoinColumn(name = "IDEMPRESA", nullable = false)

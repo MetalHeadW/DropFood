@@ -10,7 +10,7 @@ public record UsuarioDto(
 
         @NotBlank(message= "Campo 'Nome_Usuário' não pode ser em Branco")
         @NotNull(message= "Campo 'Nome_Usuário' não pode ser Nulo")
-        String nm_Usuario,
+        String nmUsuario,
 
         @NotBlank(message= "Campo 'Email' não pode ser em Branco")
         @NotNull(message= "Campo 'Email' não pode ser Nulo")
@@ -18,7 +18,7 @@ public record UsuarioDto(
 
         @NotBlank(message= "Campo 'Senha_Usuario' não pode ser em Branco")
         @NotNull(message= "Campo 'Senha_Usuario' não pode ser Nulo")
-        String senha_Usuario,
+        String senhaUsuario,
 
         @NotBlank(message= "Campo 'Telefone' não pode ser em Branco")
         @NotNull(message= "Campo 'Telefone' não pode ser Nulo")
@@ -27,7 +27,7 @@ public record UsuarioDto(
         @NotNull(message= "Campo 'Tipo_Usuário' não pode ser Nulo")
         @Min(value = 1, message = "Tipo de Usuário deve ser no mínimo 1")
         @Max(value = 4, message = "Tipo de Usuário deve ser no máximo 4")
-        Integer tip_Usuario, // 1-Administrador. 2-Funcionario 3-Entregador. 4-Cliente.
+        Integer tipUsuario, // 1-Administrador. 2-Funcionario 3-Entregador. 4-Cliente.
 
         @NotBlank(message= "Campo 'CPF' não pode ser em Branco")
         @NotNull(message= "Campo 'CPF' não pode ser Nulo")
@@ -40,7 +40,7 @@ public record UsuarioDto(
         @NotBlank(message= "Campo 'flg_Ativo' não pode ser em Branco")
         @NotNull(message= "Campo 'flg_Ativo' não pode ser Nulo")
         @Pattern(regexp = "^A|I$", message = "Só é possível salvar o flg_ativo com A-Ativo ou I-Inativo.")
-        String flg_Ativo,
+        String flgAtivo,
 
         String preferencia1,
         String preferencia2,

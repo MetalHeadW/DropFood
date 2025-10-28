@@ -14,22 +14,22 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id_Pedido")
+@EqualsAndHashCode(of = "idPedido")
 @Table(name = "TBPEDIDO")
 public class PedidoModel {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IDPEDIDO")
-    private Integer id_Pedido;
+    private Integer idPedido;
 
     @Column(name = "DATAHORA")
-    private LocalDateTime data_Hora;
+    private LocalDateTime dataHora;
 
     @Column (name="STSPEDIDO", length = 50, nullable = false)
-    private String sts_Pedido;
+    private String stsPedido;
 
     @Column(name = "VLRTOTAL", nullable = false)
-    private Double vlr_Total;
+    private Double vlrTotal;
 
     @ManyToOne
     @JoinColumn(name = "IDUSUARIO", nullable = false)
@@ -40,11 +40,11 @@ public class PedidoModel {
     private EmpresaModel empresa;
 
     @Column (name = "TPPAGAMENTO", length = 50)
-    private String tp_Pagamento;  // Dinheiro, cartão de crédito, debito, etc......
+    private String tpPagamento;  // Dinheiro, cartão de crédito, debito, etc......
 
     @Column (name = "STSPAGAMENTO", length = 50)
-    private String sts_Pagamento; // A receber, conluído.......
+    private String stsPagamento; // A receber, conluído.......
 
     @Column (name = "DTPAGAMENTO")
-    private LocalDate dt_Pagamento;
+    private LocalDate dtPagamento;
 }

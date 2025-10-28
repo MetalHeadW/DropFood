@@ -4,16 +4,16 @@ import jakarta.validation.constraints.DecimalMin;
 
 public record PedidoDto(
         @DecimalMin(value = "0.01", message = "Valor Total deve ser positivo")
-        Double vlr_Total,
+        Double vlrTotal,
 
-        Integer id_Usuario,
+        Integer idUsuario,
 
-        Integer id_Empresa,
+        Integer idEmpresa,
 
-        String tp_Pagamento,
+        String tpPagamento,
 
-        String sts_Pedido,
+        String stsPedido,
 
-        String sts_Pagamento
+        String stsPagamento
 ) {
 }
